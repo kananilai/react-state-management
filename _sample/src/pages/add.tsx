@@ -1,10 +1,18 @@
 import type { NextPage } from "next";
-import { ComponentProps } from "react";
-
-const Home: NextPage = () => {
+import { ComponentProps, Dispatch, SetStateAction } from "react";
+import { Todo } from "src/types";
+type Props = {
+  setTodos: Dispatch<SetStateAction<Todo[]>>;
+};
+const Home: NextPage<Props> = ({ setTodos }) => {
   const handleSubmit: ComponentProps<"form">["onSubmit"] = (event) => {
     event.preventDefault();
     const text = event.currentTarget.text.value;
+    setTodos((prevTodos) => {
+      const newTodo = { id: prevTodos.length + 1, text: text, isDone: false };
+      //配列の末尾に追加
+      return [...prevTodos, newTodo];
+    });
     event.currentTarget.reset();
   };
 
