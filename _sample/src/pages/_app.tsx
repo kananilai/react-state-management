@@ -1,7 +1,7 @@
 import type { AppProps } from "next/app";
 import { useState } from "react";
 import { Todo } from "src/types";
-import { Layout } from "./components/layout";
+import { Layout } from "./components/Layout";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const TODOS: Todo[] = [
